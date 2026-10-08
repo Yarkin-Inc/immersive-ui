@@ -1,8 +1,8 @@
-# ImmersiveUI Fabric 26.2 非官方移植
+# ImmersiveUI Fabric 26.3 非官方移植
 
 ## 中文说明
 
-这是 Immersive UI 面向 **Minecraft Java 26.2 + Fabric** 的非官方移植包。
+这是 Immersive UI 面向 **Minecraft Java 26.3 + Fabric** 的非官方移植包。
 
 当前移植内容包括：
 
@@ -14,10 +14,17 @@
 - 物品拿起与放回槽位动画
 - Mod Menu 设置入口
 
+### 26.3 移植
+
+- 更新 Fabric Loader、Fabric API、ShatterLib 和 Mod Menu 依赖。
+- 适配 RenderPearl 渲染管线，修复快捷栏选择框动画注入。
+- 将熔炉粒子注入移至 `extractBackground`，恢复燃料点燃时的粒子。
+- 移除过时的 GameRenderer 注入；由 Screen 注入统一处理鼠标移动。
+
 ### 相较原版的改动
 
-- 适配 Minecraft 26.2 的 `GuiGraphicsExtractor`、容器槽位渲染和 Fabric Mixin 结构。
-- 修复 26.2 中进度/配方提示使用 `fakeItem` 导致的 `AdvancementToast` 注入兼容问题。
+- 适配 Minecraft 26.3 的 `GuiGraphicsExtractor`、容器槽位渲染和 Fabric Mixin 结构。
+- 修复 26.3 中进度/配方提示使用 `fakeItem` 导致的 `AdvancementToast` 注入兼容问题。
 - 新增物品拿起动画：物品从槽位平滑移动到光标位置。
 - 新增物品放回动画：物品从光标位置平滑移动回目标槽位。
 - 快速拖拽分配堆叠物品时不会错误触发多段放回动画。
@@ -32,9 +39,9 @@
 ### 依赖下载
 
 - [Fabric Loader](https://fabricmc.net/use/installer/)
-- [Fabric API 26.2](https://modrinth.com/mod/fabric-api)
-- [ShatterLib / OctoLib 26.2 Fabric](https://modrinth.com/mod/shatterbyte-lib/versions)
-- [Mod Menu 26.2 Fabric，可选但设置入口需要](https://modrinth.com/mod/modmenu)
+- [Fabric API 26.3](https://modrinth.com/mod/fabric-api)
+- [ShatterLib / OctoLib 26.3 Fabric](https://modrinth.com/mod/shatterbyte-lib/versions)
+- [Mod Menu 26.3 Fabric，可选但设置入口需要](https://modrinth.com/mod/modmenu)
 
 ### 构建
 
@@ -46,11 +53,11 @@
 
 构建结果：
 
-`build/libs/ImmersiveUI-FABRIC-1.0.9+26.2.jar`
+`build/libs/ImmersiveUI-FABRIC-1.0.9+26.3.jar`
 
 ## English
 
-This is an **unofficial Fabric port of Immersive UI for Minecraft Java 26.2**.
+This is an **unofficial Fabric port of Immersive UI for Minecraft Java 26.3**.
 
 Included features:
 
@@ -62,10 +69,17 @@ Included features:
 - Item pickup and return animations
 - Mod Menu configuration entry
 
+### 26.3 port
+
+- Updated Fabric Loader, Fabric API, ShatterLib and Mod Menu dependencies.
+- Updated the hotbar animation hook for the RenderPearl pipeline.
+- Moved furnace particles to `extractBackground`, restoring the fuel ignition burst.
+- Removed the obsolete GameRenderer hook; mouse movement is tracked by the Screen hook.
+
 ### Changes compared with the original mod
 
-- Ported the GUI, container-slot rendering, and Fabric Mixin integration to Minecraft 26.2.
-- Updated the advancement/recipe toast hook for the 26.2 `fakeItem` rendering path.
+- Ported the GUI, container-slot rendering, and Fabric Mixin integration to Minecraft 26.3.
+- Updated the advancement/recipe toast hook for the 26.3 `fakeItem` rendering path.
 - Added smooth slot-to-cursor pickup animation.
 - Added smooth cursor-to-slot return animation.
 - Prevented quick-craft drag placement from producing incorrect return animations.
@@ -80,13 +94,19 @@ This project is not affiliated with Mojang, Fabric, Modrinth, or Octo-Studios. T
 ### Dependencies
 
 - [Fabric Loader](https://fabricmc.net/use/installer/)
-- [Fabric API 26.2](https://modrinth.com/mod/fabric-api)
-- [ShatterLib / OctoLib 26.2 Fabric](https://modrinth.com/mod/shatterbyte-lib/versions)
-- [Mod Menu 26.2 Fabric, optional but required for the config button](https://modrinth.com/mod/modmenu)
+- [Fabric API 26.3](https://modrinth.com/mod/fabric-api)
+- [ShatterLib / OctoLib 26.3 Fabric](https://modrinth.com/mod/shatterbyte-lib/versions)
+- [Mod Menu 26.3 Fabric, optional but required for the config button](https://modrinth.com/mod/modmenu)
 
 ### Build
 
-Java 25 is required:
+Java 25 is required. The Gradle 9.6.0 wrapper is included. On Linux/macOS:
+
+```sh
+./gradlew build --no-daemon
+```
+
+On Windows:
 
 ```powershell
 ./gradlew.bat build --no-daemon
@@ -94,4 +114,13 @@ Java 25 is required:
 
 Output:
 
-`build/libs/ImmersiveUI-FABRIC-1.0.9+26.2.jar`
+`build/libs/ImmersiveUI-FABRIC-1.0.9+26.3.jar`
+
+
+### Client integration test
+
+```sh
+./gradlew runClientGameTest --no-daemon
+```
+
+The test launches Minecraft in a temporary test world and exercises the Mod Menu configuration screen, hotbar and advancement rendering, curse formatting, furnace particles, item pickup/return animations, and enchanting/anvil/smithing screens. It requires a working graphics environment. Test sources are excluded from the release jar.

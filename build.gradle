@@ -1,5 +1,5 @@
 plugins {
-    id 'net.fabricmc.fabric-loom' version '1.15.5'
+    id 'net.fabricmc.fabric-loom' version '1.17.21'
     id 'maven-publish'
 }
 
@@ -58,6 +58,7 @@ def replaceProperties = [
         minecraft_version: minecraft_version,
         minecraft_version_range: minecraft_version_range,
         java_version: java_version,
+        fabric_loader_version: fabric_loader_version,
         shatterlib_version: shatterlib_version
 ]
 
@@ -75,6 +76,13 @@ java {
 
 tasks.withType(JavaCompile).configureEach {
     options.release = java_version as int
+}
+
+fabricApi.configureTests {
+    createSourceSet = true
+    modId = 'immersiveui_test'
+    enableGameTests = false
+    enableClientGameTests = true
 }
 
 publishing {

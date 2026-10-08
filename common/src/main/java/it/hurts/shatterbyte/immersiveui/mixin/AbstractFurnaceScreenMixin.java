@@ -17,7 +17,7 @@ public class AbstractFurnaceScreenMixin {
     @Unique
     public AtomicBoolean shouldBurst = new AtomicBoolean(false);
 
-    @Inject(require = 0, method = "extractContents", at = @At("TAIL"))
+    @Inject(method = "extractBackground", at = @At("TAIL"))
     public void render(GuiGraphicsExtractor guiGraphics, int mouseX, int mouseY, float partialTick, CallbackInfo ci) {
         AbstractFurnaceScreen<?> screen = ((AbstractFurnaceScreen<?>) (Object) this);
         AbstractFurnaceMenu menu = screen.getMenu();
