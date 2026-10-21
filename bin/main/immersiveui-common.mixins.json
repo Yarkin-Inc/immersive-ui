@@ -1,0 +1,27 @@
+{
+  "required": true,
+  "package": "it.hurts.shatterbyte.immersiveui.mixin",
+  "compatibilityLevel": "JAVA_25",
+  "minVersion": "0.8",
+  "client": [
+    "AbstractContainerScreenAccessor",
+    "AbstractContainerScreenMixin",
+    "AbstractFurnaceMenuAccessor",
+    "AbstractFurnaceScreenMixin",
+    "AdvancementToastMixin",
+    "AnvilMenuMixin",
+    "EnchantmentMixin",
+    "EnchantmentScreenMixin",
+    "GooeyMixin",
+    "InGameHudMixin",
+    "ItemStackMixin",
+    "ScreenMixin",
+    "SmithingMenuMixin",
+    "FieldInfoLocalizationMixin"
+  ],
+  "mixins": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

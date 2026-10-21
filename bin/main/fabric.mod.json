@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "id": "${mod_id}",
+  "version": "${mod_version}",
+  "name": "${mod_name}",
+  "description": "${mod_description}",
+  "authors": [
+    "${mod_authors}"
+  ],
+  "icon": "icon.png",
+  "license": "${mod_license}",
+  "environment": "client",
+  "entrypoints": {
+    "modmenu": [
+      "it.hurts.shatterbyte.immersiveui.fabric.ImmersiveUIModMenu"
+    ],
+    "main": [
+      "${mod_group}.fabric.ImmersiveUIFabric"
+    ],
+    "client": [
+      "${mod_group}.fabric.client.ImmersiveUIFabricClient"
+    ]
+  },
+  "mixins": [
+    "${mod_id}-common.mixins.json",
+    "${mod_id}.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=${fabric_loader_version}",
+    "minecraft": "${minecraft_version_range}",
+    "java": ">=${java_version}",
+    "shatterlib": ">=${shatterlib_version}",
+    "fabric-api": "*"
+  },
+  "suggests": {
+    "modmenu": "*"
+  }
+}
